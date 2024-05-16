@@ -11,18 +11,23 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { useState } from 'react';
-const MAX_FILE_SIZE = 1024 * 1024 * 50;
-const ACCEPTED_IMAGE_MIME_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
-const ACCEPTED_IMAGE_TYPES = ['jpeg', 'jpg', 'png', 'webp'];
+import { ChangeEvent, useContext, useState } from 'react';
+import { EVENT_ACTION } from '@/Context/EventsContext/EventsReducer';
+import { EventsContext } from '@/Context/EventsContext/EventsContext';
+
 export const FormSchema = z.object({
    title: z.string().min(5),
    description: z.string().min(5),
    date: z.coerce.date(),
-   where: z.string().min(1),
+   location: z.string().min(1),
+   organizer: z.string(),
+   image: z
+      .any()
+      .refine((file) => file?.length == 1, 'Photo is required.')
+      .refine((file) => file[0]?.size <= 3000000),
 });
 export type formType = z.infer<typeof FormSchema>;
-/* function getImageData(event: ChangeEvent<HTMLInputElement>) {
+function getImageData(event: ChangeEvent<HTMLInputElement>) {
    const dataTransfer = new DataTransfer();
    Array.from(event.target.files!).forEach((image) => dataTransfer.items.add(image));
 
@@ -30,33 +35,37 @@ export type formType = z.infer<typeof FormSchema>;
    const displayUrl = URL.createObjectURL(event.target.files![0]);
 
    return { files, displayUrl };
-} */
+}
 export function NewEvent() {
-   const [preview, setPreview] = useState<File | null>(null);
+   const { eventsDispatch } = useContext(EventsContext);
+   const [preview, setPreview] = useState('');
    const form = useForm<z.infer<typeof FormSchema>>({
       resolver: zodResolver(FormSchema),
       mode: 'onSubmit',
       defaultValues: {
          title: '',
-         where: '',
+         location: '',
+         organizer: '',
       },
    });
-   function handleChange(e) {
+
+   /*   function handleChange(e) {
       console.log(e.target.files);
       setPreview(URL.createObjectURL(e.target.files[0]));
-   }
+   } */
 
    const onSubmit = (data: z.infer<typeof FormSchema>) => {
-      const submitData = { ...data, img: preview };
-      console.log(submitData);
       console.log(data);
+      if (data) {
+         eventsDispatch({ type: EVENT_ACTION.ADD, payload: data });
+      }
    };
 
    return (
-      <section className=" bg-zinc-300 p-6 w-full  h-screen flex flex-col items-center">
+      <section className=" bg-zinc-300 p-4 w-full h-full flex flex-col items-center">
          <h1 className=" text-4xl font-bold  text-center ">Create Event</h1>
          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full ">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full overflow-scroll mx-3 ">
                <FormField
                   name="title"
                   control={form.control}
@@ -68,6 +77,19 @@ export function NewEvent() {
                            <Input placeholder="Event title" {...field} autoComplete="off" />
                         </FormControl>
                         <FormDescription className="text-gray-600">Event title</FormDescription>
+                     </FormItem>
+                  )}
+               />
+               <FormField
+                  name="organizer"
+                  control={form.control}
+                  render={({ field }) => (
+                     <FormItem>
+                        <FormLabel>Organizer</FormLabel>
+                        <FormMessage />
+                        <FormControl>
+                           <Input placeholder="Organizer" {...field} autoComplete="off" />
+                        </FormControl>
                      </FormItem>
                   )}
                />
@@ -109,7 +131,7 @@ export function NewEvent() {
                   )}
                />
                <FormField
-                  name="where"
+                  name="location"
                   control={form.control}
                   render={({ field }) => (
                      <FormItem>
@@ -128,14 +150,22 @@ export function NewEvent() {
                   </Avatar>
                ) : null}
                <FormField
-                  name="addImage"
+                  name="image"
                   control={form.control}
                   render={({ field }) => (
                      <FormItem>
                         <FormLabel>Event Photo</FormLabel>
                         <FormMessage />
                         <FormControl>
-                           <Input type="file" {...field} autoComplete="off" onChange={handleChange} ref={field.ref} />
+                           <Input
+                              type="file"
+                              {...field}
+                              onChange={(event) => {
+                                 const { files, displayUrl } = getImageData(event);
+                                 setPreview(displayUrl);
+                                 field.onChange(files);
+                              }}
+                           />
                         </FormControl>
                      </FormItem>
                   )}
