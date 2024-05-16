@@ -7,7 +7,9 @@ const BottomNavbar = () => {
          <div className=" h-full w-full bg-slate-300">
             <ul className="w-full h-full items-center flex justify-between">
                <li>
-                  <Home className="w-10 h-10 text-primary" />
+                  <Link to={'/'}>
+                     <Home className="w-10 h-10 text-primary" />
+                  </Link>
                </li>
                <li>
                   <Link to={'/newevent'}>
