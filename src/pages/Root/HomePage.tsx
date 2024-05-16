@@ -1,10 +1,13 @@
-import { ScrollArea } from '@/components/Scrollarea/Scrollarea';
+import { EventsContext } from "@/Context/EventsContext/EventsContext";
+import { ScrollArea } from "@/components/Scrollarea/Scrollarea";
+import { useContext } from "react";
 type HomePage = {};
 
 export const HomePage: React.FC<HomePage> = () => {
-   return (
-      <section>
-         <ScrollArea />
-      </section>
-   );
+  const { eventsState } = useContext(EventsContext);
+  return (
+    <section>
+      <ScrollArea currentEventState={eventsState.event} />
+    </section>
+  );
 };

@@ -1,5 +1,5 @@
 import { UserEventsContext } from "@/Context/UserEventsContext/UserEventsContext";
-import EventCard from "@/components/EventCard/EventCard";
+import { ScrollArea } from "@/components/Scrollarea/Scrollarea";
 import { useContext } from "react";
 
 type SavedEventPageProps = {};
@@ -10,35 +10,9 @@ const SavedEventPage = ({}: SavedEventPageProps) => {
   return (
     <>
       <h2 className="text-xl font-bold">Upcoming event for you</h2>
-      <ul>
-        {userEventsState.favorites.length > 0 ? (
-          <ul>
-            {userEventsState.favorites.map((favEvent) => {
-              return (
-                <li>
-                  <EventCard event={favEvent} />
-                </li>
-              );
-            })}
-          </ul>
-        ) : (
-          <div>inga events</div>
-        )}
-      </ul>
+      <ScrollArea currentEventState={userEventsState.favorites} />
       <h2 className="text-xl font-bold">Upcoming event for you</h2>
-      {userEventsState.attending.length > 0 ? (
-        <ul>
-          {userEventsState.favorites.map((favEvent) => {
-            return (
-              <li>
-                <EventCard event={favEvent} />
-              </li>
-            );
-          })}
-        </ul>
-      ) : (
-        <div>inga events</div>
-      )}
+      <ScrollArea currentEventState={userEventsState.attending} />
     </>
   );
 };

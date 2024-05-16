@@ -23,6 +23,8 @@ export const initalUserEventsState : UserEventsState = {
             organizer: "Basketklubben",
             images: ["image1.jpg", "image2.jpg"]
         },
+
+        
     ],
     attending: [{
         title: "Basketbollbonanza",
