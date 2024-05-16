@@ -1,11 +1,5 @@
-import { NewEvent } from './components/newEventForm/NewEvent';
-
 function App() {
-   return (
-      <>
-         <NewEvent></NewEvent>
-      </>
-   );
+   return <></>;
 }
 
 export default App;

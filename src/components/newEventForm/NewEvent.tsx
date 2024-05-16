@@ -17,6 +17,7 @@ export const FormSchema = z.object({
    date: z.coerce.date(),
 });
 export type formType = z.infer<typeof FormSchema>;
+
 export function NewEvent() {
    const form = useForm<z.infer<typeof FormSchema>>({
       resolver: zodResolver(FormSchema),
@@ -29,8 +30,8 @@ export function NewEvent() {
    const onSubmit = (data: z.infer<typeof FormSchema>) => {};
 
    return (
-      <section className=" relative bg-zinc-300 w-full p-6 self-center h-screen flex flex-col justify-center items-center">
-         <h1 className=" text-4xl p-2 absolute top-10 text-center ">Create Event</h1>
+      <section className=" bg-zinc-300 p-6 w-full h-screen self-center flex flex-col justify-center items-center">
+         <h1 className=" text-4xl p-2  top-10 text-center ">Create Event</h1>
          <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full ">
                <FormField

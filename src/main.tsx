@@ -4,6 +4,7 @@ import './global.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Root from './pages/Root/Root.tsx';
 import { HomePage } from './pages/Root/HomePage.tsx';
+import { NewEvent } from './components/newEventForm/NewEvent.tsx';
 
 const router = createBrowserRouter([
    {
@@ -14,13 +15,10 @@ const router = createBrowserRouter([
             element: <HomePage />,
          },
          {
-            path: '/event/:eventId',
-            element: <Root />,
+            path: '/newevent',
+            element: <NewEvent />,
          },
-         {
-            path: '/event/new',
-            element: <Root />,
-         },
+
          {
             path: '/event/saved',
             element: <Root />,
