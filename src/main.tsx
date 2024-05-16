@@ -5,6 +5,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Root from "./pages/Root/Root.tsx";
 import { HomePage } from "./pages/Root/HomePage.tsx";
 import { NewEvent } from "./components/newEventForm/NewEvent.tsx";
+import SavedEventPage from "./pages/SavedEvents/SavedEventPage.tsx";
 import EventView from "./components/EventView/EventView.tsx";
 
 const router = createBrowserRouter([
@@ -23,10 +24,9 @@ const router = createBrowserRouter([
         path: "/event",
         element: <EventView />,
       },
-
       {
         path: "/event/saved",
-        element: <Root />,
+        element: <SavedEventPage />,
       },
       {
         path: "/profile/:profileId",

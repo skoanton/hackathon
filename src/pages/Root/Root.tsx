@@ -5,9 +5,9 @@ import { Outlet } from "react-router-dom";
 const Root = () => {
   return (
     <>
-      <div className=" h-screen">
+      <div>
         {/* <Header /> */}
-        <main>
+        <main className="pb-14">
           <Outlet />
         </main>
         <BottomNavbar />
