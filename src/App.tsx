@@ -1,5 +1,11 @@
+import BottomNavbar from "./components/BottomNavbar/BottomNavbar";
+
 function App() {
-  return <></>;
+  return (
+    <main className="w-screen">
+      <BottomNavbar />
+    </main>
+  );
 }
 
 export default App;
