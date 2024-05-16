@@ -1,5 +1,7 @@
+import { useContext } from "react";
 import EventCard from "../EventCard/EventCard";
 import { ScrollAreaShad } from "../ui/scroll-area";
+import { EventsContext } from "@/Context/EventsContext/EventsContext";
 
 //fake data temp
 export const events = [
@@ -74,11 +76,12 @@ export const events = [
 ];
 
 export function ScrollArea() {
+  const { eventsState } = useContext(EventsContext);
   return (
     <ScrollAreaShad className="h-screen w-screen rounded-md border">
-      <div className="p-4">
-        {events.map((event, i) => (
-          <EventCard key={i} />
+      <div className="p-4 flex flex-col gap-2">
+        {eventsState.event.map((event) => (
+          <EventCard event={event} />
         ))}
       </div>
     </ScrollAreaShad>

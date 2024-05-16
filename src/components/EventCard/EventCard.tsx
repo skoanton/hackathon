@@ -4,9 +4,14 @@ import {
   CardDescription,
   CardTitle,
 } from "@/components/ui/card";
+import { Event } from "@/types/eventTypes";
 import { Heart, UserCheck } from "lucide-react";
 
-const EventCard = () => {
+type EventCardProps = {
+  event: Event;
+};
+
+const EventCard = ({ event }: EventCardProps) => {
   return (
     <>
       <Card>
@@ -20,9 +25,11 @@ const EventCard = () => {
           </picture>
 
           <div className="flex-grow">
-            <CardTitle className="text-lg">Lördag, Sep 24, 10:00</CardTitle>
-            <p className="font-bold">Basketbollbonanza</p>
-            <CardDescription>Alma Äppelqvist</CardDescription>
+            <CardTitle className="text-lg">
+              {event.date.toDateString()}
+            </CardTitle>
+            <p className="font-bold">{event.title}</p>
+            <CardDescription>{event.organizer}</CardDescription>
             <div className="flex gap-2 items-center">
               <UserCheck className="w-4 h-4" />
               <p className="font-semibold">3338 kommer</p>
