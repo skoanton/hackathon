@@ -1,3 +1,4 @@
+import EventCard from "../EventCard/EventCard";
 import { ScrollAreaShad } from "../ui/scroll-area";
 
 //fake data temp
@@ -14,7 +15,8 @@ const events = [
   },
   {
     title: "Musikfestival",
-    description: "Tre dagar med livemusik från lokala och internationella artister.",
+    description:
+      "Tre dagar med livemusik från lokala och internationella artister.",
     arranger: "Musikevenemang AB",
   },
   {
@@ -24,7 +26,8 @@ const events = [
   },
   {
     title: "Teknikkonferens",
-    description: "Utforska de senaste innovationerna och trenderna inom teknologi.",
+    description:
+      "Utforska de senaste innovationerna och trenderna inom teknologi.",
     arranger: "Teknik Innovations AB",
   },
   {
@@ -66,16 +69,7 @@ export function ScrollArea() {
     <ScrollAreaShad className="h-screen w-screen rounded-md border">
       <div className="p-4">
         {events.map((event, i) => (
-          <div key={i} className="text-sm border-2 border-black h-24 bg-red-200 flex gap-2 mb-2">
-            <img
-              src={event.title}
-              alt={`${event.title}-thumbnail`}
-              className="w-28 h-full max-w-28 min-w-28 bg-blue-200"
-            />
-            <div id="event-info">
-              <h1 className="font-bold text-2xl">{event.title}</h1>
-            </div>
-          </div>
+          <EventCard key={i} />
         ))}
       </div>
     </ScrollAreaShad>

@@ -9,12 +9,6 @@ const Root = () => {
     <>
       <Header />
       <ScrollArea />
-      <div>ROOOT</div>
-      <EventCard />
-      <EventCard />
-      <EventCard />
-      <EventCard />
-
       <Outlet />
       <BottomNavbar />
     </>
