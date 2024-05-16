@@ -4,6 +4,7 @@ import EventCard from "../EventCard/EventCard";
 import { EventsContext } from "@/Context/EventsContext/EventsContext";
 import { UserEventsContext } from "@/Context/UserEventsContext/UserEventsContext";
 import { Event } from "@/types/eventTypes";
+import { Link } from "react-router-dom";
 
 type ScrollAreaProps = {
   currentEventState: Event[];
@@ -15,7 +16,9 @@ export function ScrollArea({ currentEventState }: ScrollAreaProps) {
       <ul className="flex flex-col gap-2">
         {currentEventState.map((event) => (
           <li>
-            <EventCard event={event} />
+            <Link to={`/event/${event.id}`}>
+              <EventCard event={event} />
+            </Link>
           </li>
         ))}
       </ul>
