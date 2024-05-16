@@ -8,9 +8,11 @@ import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-const MAX_FILE_SIZE = 1024 * 1024 * 5;
+import { useState } from 'react';
+const MAX_FILE_SIZE = 1024 * 1024 * 50;
 const ACCEPTED_IMAGE_MIME_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
 const ACCEPTED_IMAGE_TYPES = ['jpeg', 'jpg', 'png', 'webp'];
 export const FormSchema = z.object({
@@ -18,29 +20,41 @@ export const FormSchema = z.object({
    description: z.string().min(5),
    date: z.coerce.date(),
    where: z.string().min(1),
-   addImage: z
-      .any()
-      .refine((files) => {
-         return files?.[0]?.size <= MAX_FILE_SIZE;
-      }, `Max image size is 5MB.`)
-      .refine((files) => ACCEPTED_IMAGE_MIME_TYPES.includes(files?.[0]?.type), 'Only .jpg, .jpeg, .png and .webp formats are supported.'),
 });
 export type formType = z.infer<typeof FormSchema>;
+/* function getImageData(event: ChangeEvent<HTMLInputElement>) {
+   const dataTransfer = new DataTransfer();
+   Array.from(event.target.files!).forEach((image) => dataTransfer.items.add(image));
 
+   const files = dataTransfer.files;
+   const displayUrl = URL.createObjectURL(event.target.files![0]);
+
+   return { files, displayUrl };
+} */
 export function NewEvent() {
+   const [preview, setPreview] = useState<File | null>(null);
    const form = useForm<z.infer<typeof FormSchema>>({
       resolver: zodResolver(FormSchema),
-      mode: 'onChange',
+      mode: 'onSubmit',
       defaultValues: {
          title: '',
+         where: '',
       },
    });
+   function handleChange(e) {
+      console.log(e.target.files);
+      setPreview(URL.createObjectURL(e.target.files[0]));
+   }
 
-   const onSubmit = (data: z.infer<typeof FormSchema>) => {};
+   const onSubmit = (data: z.infer<typeof FormSchema>) => {
+      const submitData = { ...data, img: preview };
+      console.log(submitData);
+      console.log(data);
+   };
 
    return (
-      <section className=" bg-zinc-300 p-6 w-full h-screen  flex flex-col  items-center">
-         <h1 className=" text-4xl p-2  top-10 text-center ">Create Event</h1>
+      <section className=" bg-zinc-300 p-6 w-full  h-screen flex flex-col items-center">
+         <h1 className=" text-4xl font-bold  text-center ">Create Event</h1>
          <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full ">
                <FormField
@@ -67,7 +81,6 @@ export function NewEvent() {
                         <FormControl>
                            <Textarea {...field} />
                         </FormControl>
-                        <FormDescription className="text-gray-600">Event description</FormDescription>
                      </FormItem>
                   )}
                />
@@ -108,15 +121,21 @@ export function NewEvent() {
                      </FormItem>
                   )}
                />
+               {preview ? (
+                  <Avatar className="w-12 h-12">
+                     <AvatarImage src={preview} />
+                     <AvatarFallback></AvatarFallback>
+                  </Avatar>
+               ) : null}
                <FormField
                   name="addImage"
                   control={form.control}
                   render={({ field }) => (
                      <FormItem>
-                        <FormLabel>Event place</FormLabel>
+                        <FormLabel>Event Photo</FormLabel>
                         <FormMessage />
                         <FormControl>
-                           <Input type="file" {...field} autoComplete="off" />
+                           <Input type="file" {...field} autoComplete="off" onChange={handleChange} ref={field.ref} />
                         </FormControl>
                      </FormItem>
                   )}

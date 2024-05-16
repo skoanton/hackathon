@@ -1,9 +1,9 @@
 @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
+@tailwind components;
+@tailwind utilities;
 
-  @layer base {
-    :root {
+@layer base {
+   :root {
       --background: 195 40% 98%;
       --foreground: 200 31% 6%;
       --card: 195 40% 98%;
@@ -24,9 +24,9 @@
       --input: 195 39% 20%;
       --ring: 201 56% 40%;
       --radius: 0.5rem;
-    }
-   
-    .dark {
+   }
+
+   .dark {
       --background: 195 40% 2%;
       --foreground: 200 29% 94%;
       --card: 195 40% 2%;
