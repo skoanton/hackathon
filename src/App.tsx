@@ -1,5 +1,11 @@
+import { ScrollAreaDemo } from "./components/scroll-area/Scrollarea";
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <ScrollAreaDemo />
+    </>
+  );
 }
 
 export default App;
