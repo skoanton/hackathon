@@ -4,7 +4,7 @@ import { UserEventsState, initalUserEventsState } from "./UserEventsReducer"
 
 export type UserEventsActions = {
     type: string,
-    paylaod: Event
+    payload: Event
 }
 
 
