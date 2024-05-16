@@ -1,5 +1,6 @@
-import { ScrollArea } from "./scroll-area";
+import { ScrollArea } from "../ui/scroll-area";
 
+//fake data temp
 const events = [
   {
     title: "Maraton",

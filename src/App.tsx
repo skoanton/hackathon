@@ -1,4 +1,4 @@
-import { ScrollAreaDemo } from "./components/scroll-area/Scrollarea";
+import { ScrollAreaDemo } from "./components/Scrollarea/Scrollarea";
 
 function App() {
   return (
