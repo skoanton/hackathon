@@ -1,16 +1,18 @@
-import BottomNavbar from "@/components/BottomNavbar/BottomNavbar";
-import { ScrollArea } from "@/components/Scrollarea/Scrollarea";
-import { Outlet } from "react-router-dom";
+import BottomNavbar from '@/components/BottomNavbar/BottomNavbar';
+
+import { Outlet } from 'react-router-dom';
 
 const Root = () => {
-  return (
-    <>
-      <div>ROOOT</div>
-      <ScrollArea />
-      <Outlet />
-      <BottomNavbar />
-    </>
-  );
+   return (
+      <>
+         <div className="h-screen border-collapse overflow-hidden">
+            <main className=" mb-24 ">
+               <Outlet />
+            </main>
+            <BottomNavbar />
+         </div>
+      </>
+   );
 };
 
 export default Root;
