@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 const BottomNavbar = () => {
   const location = useLocation();
   return (
-    <footer className="h-16 w-full absolute bottom-0 ">
+    <footer className="h-16 w-full fixed bottom-0  ">
       <div className=" h-full w-full bg-slate-300 px-2">
         <ul className="w-full h-full items-center flex justify-between">
           <li>

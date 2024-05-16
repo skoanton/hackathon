@@ -23,6 +23,46 @@ export const initalUserEventsState : UserEventsState = {
             organizer: "Basketklubben",
             images: ["image1.jpg", "image2.jpg"]
         },
+        {
+            title: "Basketbollbonanza",
+            description: "Kom och prova på basket! Alla är välkomna oavsett erfarenhetsnivå.",
+            date: new Date('2024-06-15T10:00:00'),
+            location: "Sporthallen, Stockholm",
+            organizer: "Basketklubben",
+            images: ["image1.jpg", "image2.jpg"]
+        },
+        {
+            title: "Basketbollbonanza",
+            description: "Kom och prova på basket! Alla är välkomna oavsett erfarenhetsnivå.",
+            date: new Date('2024-06-15T10:00:00'),
+            location: "Sporthallen, Stockholm",
+            organizer: "Basketklubben",
+            images: ["image1.jpg", "image2.jpg"]
+        },
+        {
+            title: "Basketbollbonanza",
+            description: "Kom och prova på basket! Alla är välkomna oavsett erfarenhetsnivå.",
+            date: new Date('2024-06-15T10:00:00'),
+            location: "Sporthallen, Stockholm",
+            organizer: "Basketklubben",
+            images: ["image1.jpg", "image2.jpg"]
+        },
+        {
+            title: "Basketbollbonanza",
+            description: "Kom och prova på basket! Alla är välkomna oavsett erfarenhetsnivå.",
+            date: new Date('2024-06-15T10:00:00'),
+            location: "Sporthallen, Stockholm",
+            organizer: "Basketklubben",
+            images: ["image1.jpg", "image2.jpg"]
+        },
+        {
+            title: "Basketbollbonanza",
+            description: "Kom och prova på basket! Alla är välkomna oavsett erfarenhetsnivå.",
+            date: new Date('2024-06-15T10:00:00'),
+            location: "Sporthallen, Stockholm",
+            organizer: "Basketklubben",
+            images: ["image1.jpg", "image2.jpg"]
+        },
 
         
     ],

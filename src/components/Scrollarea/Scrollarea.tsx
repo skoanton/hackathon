@@ -11,7 +11,7 @@ type ScrollAreaProps = {
 
 export function ScrollArea({ currentEventState }: ScrollAreaProps) {
   return (
-    <ScrollAreaShad className="h-screen w-screen rounded-md border">
+    <ScrollAreaShad className="w-screen rounded-md border">
       <div className="p-4 flex flex-col gap-2">
         {currentEventState.map((event) => (
           <EventCard event={event} />

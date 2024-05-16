@@ -5,9 +5,9 @@ import { Outlet } from "react-router-dom";
 const Root = () => {
   return (
     <>
-      <div className=" h-screen">
+      <div className="flex flex-col min-h-screen">
         {/* <Header /> */}
-        <main>
+        <main className=" flex-grow pb-12">
           <Outlet />
         </main>
         <BottomNavbar />
