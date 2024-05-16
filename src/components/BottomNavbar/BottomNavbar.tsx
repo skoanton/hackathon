@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 const BottomNavbar = () => {
    return (
-      <footer className="h-16 w-full absolute bottom-0 ">
-         <div className=" h-full w-full bg-slate-300">
+      <footer className=" h-16 w-full fixed bottom-0 ">
+         <div className=" h-full w-full bg-slate-300 p-6 rounded-lg">
             <ul className="w-full h-full items-center flex justify-between">
                <li>
                   <Link to={'/'}>

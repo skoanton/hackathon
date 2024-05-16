@@ -66,7 +66,7 @@ const events = [
 
 export function ScrollArea() {
    return (
-      <ScrollAreaShad className=" h-52 rounded-md border">
+      <ScrollAreaShad className="rounded-md border">
          <div className="">
             {events.map((event, i) => (
                <div key={i} className="text-sm border-2 border-black h-24 bg-red-200 flex gap-2 mb-2">

@@ -7,7 +7,7 @@ const Root = () => {
       <>
          <div className=" h-screen">
             {/*           <Header /> */}
-            <main>
+            <main className=" pb-12">
                <Outlet />
             </main>
             <BottomNavbar />
