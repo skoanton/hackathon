@@ -73,7 +73,7 @@ export function NewEvent() {
       <section className=" bg-zinc-300 p-4 w-full h-full flex flex-col items-center">
          <h1 className=" text-4xl font-bold  text-center ">Create Event</h1>
          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full overflow-scroll px-4  ">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 w-full overflow-scroll px-4  ">
                <FormField
                   name="title"
                   control={form.control}
@@ -171,13 +171,13 @@ export function NewEvent() {
                   )}
                />
 
-          <div className="w-full flex justify-center">
-            <Button className="w-full" type="submit">
-              Submit
-            </Button>
-          </div>
-        </form>
-      </Form>
-    </section>
-  );
+               <div className="w-full flex justify-center">
+                  <Button className="w-full" type="submit">
+                     Submit
+                  </Button>
+               </div>
+            </form>
+         </Form>
+      </section>
+   );
 }
