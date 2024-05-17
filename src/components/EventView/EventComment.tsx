@@ -7,9 +7,11 @@ export function EventComment() {
   };
 
   return (
-    <div className="grid w-full gap-2">
-      <Textarea placeholder="Comment on this event!!!" className="mt-2" />
-      <Button onClick={() => submitComment()}>Post comment</Button>
+    <div className="flex h-16 gap-1">
+      <Textarea placeholder="Comment on this event!!!" className="bg-[#4E507A] border-none" />
+      <Button onClick={() => submitComment()} className="h-full">
+        Send
+      </Button>
     </div>
   );
 }
