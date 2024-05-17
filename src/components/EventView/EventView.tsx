@@ -28,17 +28,31 @@ const EventCard = () => {
     }
   };
 
-  const currentEventExists = currentEvent
+  const eventComing = () => {
+    if (currentEvent) {
+      if (eventAttending) {
+        userEventsDispatch({ type: USER_EVENT_ACTION.REMOVE_ATTENDING, payload: currentEvent });
+      } else {
+        userEventsDispatch({ type: USER_EVENT_ACTION.ADD_ATTENDING, payload: currentEvent });
+      }
+      setEventAttending(!eventAttending);
+    }
+  };
+
+  const currentEventLiked = currentEvent
     ? userEventsState.favorites.some((event) => event.id === currentEvent.id)
     : false;
+  const currentEventAttending = currentEvent
+    ? userEventsState.attending.some((event) => event.id === currentEvent.id)
+    : false;
 
-  const [eventLiked, setEventLiked] = useState<boolean>(currentEventExists);
+  const [eventLiked, setEventLiked] = useState<boolean>(currentEventLiked);
+  const [eventAttending, setEventAttending] = useState<boolean>(currentEventAttending);
 
   useEffect(() => {
-    setEventLiked(currentEventExists);
-  }, [currentEventExists]);
-
-  const toggleComing = () => {};
+    setEventLiked(currentEventLiked);
+    setEventAttending(currentEventAttending);
+  }, [currentEventLiked, currentEventAttending]);
 
   return (
     currentEvent && (
@@ -87,8 +101,13 @@ const EventCard = () => {
               </div>
             ))}
           </div>
-          <div className="w-full text-center border-2 border-black" onClick={toggleComing}>
-            <ComingToEventButton className="w-full" />
+          <div
+            className={`w-full h-12 flex justify-center items-center border-2 border-black font-bold duration-700 ${
+              eventAttending ? "text-green-500 bg-slate-200" : "text-gray-300 bg-slate-400"
+            }`}
+            onClick={eventComing}
+          >
+            Coming
           </div>
         </CardContent>
       </Card>
