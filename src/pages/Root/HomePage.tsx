@@ -12,6 +12,7 @@ export const HomePage: React.FC<HomePage> = () => {
   return (
     <section>
       <StartpageCarousel />
+      <h2 className="text-xl font-bold text-center">Kommande events</h2>
       <ScrollArea currentEventState={sortedEvents} />
     </section>
   );

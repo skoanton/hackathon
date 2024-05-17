@@ -11,9 +11,7 @@ export function StartpageCarousel() {
   const { eventsState } = useContext(EventsContext);
   return (
     <Carousel className="mb-2">
-      <h1 className="text-center py-2 font-bold text-2xl ">
-        Popular upcoming events
-      </h1>
+      <h1 className="text-center py-2 font-bold text-2xl ">Populära events</h1>
       <CarouselContent>
         {eventsState.event.map((event, index) => (
           <CarouselItem key={index} className="basis-1/2 ">

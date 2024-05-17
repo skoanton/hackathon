@@ -18,7 +18,7 @@ const SavedEventPage = ({}: SavedEventPageProps) => {
         {userEventsState.favorites.length > 0 ? (
           <ScrollArea currentEventState={userEventsState.favorites} />
         ) : (
-          <p className="text-center font-semibold italic">
+          <p className="text-center font-semibold italic text-white">
             Du har inga sparade event ännu
           </p>
         )}
@@ -32,8 +32,8 @@ const SavedEventPage = ({}: SavedEventPageProps) => {
         {userEventsState.attending.length > 0 ? (
           <ScrollArea currentEventState={userEventsState.attending} />
         ) : (
-          <p className="text-center font-semibold italic">
-            Du har inga kommande event{" "}
+          <p className="text-center font-semibold italic text-white">
+            Du har inga kommande event
           </p>
         )}
       </div>

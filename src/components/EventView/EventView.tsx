@@ -1,19 +1,14 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { EventComment } from "./EventComment";
 import { Heart } from "lucide-react";
 import { useContext, useState, useEffect } from "react";
 import { EventsContext } from "@/Context/EventsContext/EventsContext";
-import { ComingToEventButton } from "./ComingToEventButton";
 import { UserEventsContext } from "@/Context/UserEventsContext/UserEventsContext";
 import { USER_EVENT_ACTION } from "@/Context/UserEventsContext/UserEventsReducer";
 import { useParams } from "react-router-dom";
 import { Event } from "@/types/eventTypes";
+import { BsFillPeopleFill } from "react-icons/bs";
+import { Button } from "../ui/button";
 
 const EventCard = () => {
   const { eventsState } = useContext(EventsContext);
@@ -21,9 +16,7 @@ const EventCard = () => {
 
   const params = useParams<{ id: string }>();
 
-  const currentEvent: Event | undefined = eventsState.event.find(
-    (event) => event.id === params.id
-  );
+  const currentEvent: Event | undefined = eventsState.event.find((event) => event.id === params.id);
 
   const eventReaction = () => {
     if (currentEvent) {
@@ -67,9 +60,7 @@ const EventCard = () => {
     : false;
 
   const [eventLiked, setEventLiked] = useState<boolean>(currentEventLiked);
-  const [eventAttending, setEventAttending] = useState<boolean>(
-    currentEventAttending
-  );
+  const [eventAttending, setEventAttending] = useState<boolean>(currentEventAttending);
 
   useEffect(() => {
     setEventLiked(currentEventLiked);
@@ -78,66 +69,65 @@ const EventCard = () => {
 
   return (
     currentEvent && (
-      <Card>
-        <CardContent className="flex flex-col h-screen bg-card-foreground">
-          <CardHeader>
-            <CardTitle className="text-center">{currentEvent?.title}</CardTitle>
-            <picture className="w-full border-2 relative">
-              <img
-                src="/test-picture.jpg"
-                alt="event picture"
-                className="w-full"
-              />
-              <Heart
-                className={`absolute scale-[200%] right-0 duration-700 ${
-                  eventLiked ? "fill-red-400" : "fill-gray-400"
-                }`}
-                onClick={eventReaction}
-              />
-            </picture>
-          </CardHeader>
-
-          <div>
-            <div className="grid grid-cols-2 border-b-2 border-black">
-              <div className="h-12 flex items-center">
-                <p className="px-2 text-xl">Arranged by:</p>
-              </div>
-              <div className="h-12 flex items-center">
-                <p className="font-bold text-xl">{currentEvent.organizer}</p>
-              </div>
-            </div>
-            <div className="grid grid-cols-2 border-b-2 border-black">
-              <div className="h-12 flex items-center">
-                <p className="px-2 text-xl">Event location:</p>
-              </div>
-              <div className="h-12 flex items-center">
-                <p className="font-bold text-l">{currentEvent.location}</p>
-              </div>
-            </div>
-          </div>
-          <CardDescription className="py-2 h-auto border-b-2 border-black">
-            {currentEvent.description}
-          </CardDescription>
-          <EventComment currentEvent={currentEvent} />
-          <div>
-            {currentEvent.comments?.map((comment, index) => (
-              <div key={index} id="comment">
-                <p className="w-full min-h-12 h-auto bg-slate-100 mt-4 border-[1px] border-gray-300 p-1">
-                  {comment.post}
-                  <span className="text-gray-400">- {comment.name}</span>
-                </p>
-              </div>
-            ))}
-          </div>
-          <div
-            className={`w-full h-12 flex justify-center items-center border-2 border-black font-bold duration-700 ${
-              eventAttending
-                ? "text-green-500 bg-slate-200"
-                : "text-gray-300 bg-slate-400"
+      <Card className=" w-screen h-screen border-none shadow-none">
+        <CardHeader>
+          <h1 className="text-4xl font-bold tracking-wider text-center">{currentEvent.title}</h1>
+          <h2 className="text-center underline tracking-wider">{currentEvent.date.toDateString()}</h2>
+        </CardHeader>
+        <div className=" relative mx-8 bg-red-200 rounded-lg">
+          <img src={`${currentEvent.images}`} alt="" className=" object-fit" />
+          <Heart
+            className={`absolute scale-[200%] right-0 translate-x-2 bottom-0 duration-700 ${
+              eventLiked ? "fill-red-400" : "fill-gray-400"
             }`}
-            onClick={eventComing}
-          >
-            Coming
+            onClick={eventReaction}
+          />
+          <div className="bg-slate-100 -translate-x-4 translate-y-2 w-auto gap-4 h-10 flex justify-between pr-2 pl-4 items-center rounded-full bottom-0  absolute">
+            <BsFillPeopleFill className="scale-[200%]" />
+            <p className="tracking-wider text-xl">{currentEvent.attendants}</p>
+          </div>
+        </div>
+        <CardContent>
+          <div className="  h-24 w-full mt-6 rounded-lg grid grid-rows-2 ">
+            <div className="flex justify-between px-2  font-thin items-center">
+              <p>Organizer: </p>
+              <p>{currentEvent.organizer}</p>
+            </div>
+            <div className="flex justify-between px-2 font-thin items-center">
+              <p>Location: </p>
+              <p>{currentEvent.location}</p>
+            </div>
+          </div>
+          <hr className="bg-black" />
+          <div className="h-32 w-full mt-6 rounded-lg flex flex-col gap-0 pl-2 ">
+            <h1 className="underline underline-offset-2 text-xl font-bold tracking-wider h-8">Om eventet</h1>
+            <p className="tracking-wide">{currentEvent.description}</p>
+          </div>
+          <hr className="bg-black" />
+
+          <div className="h-auto w-full mt-6 rounded-lg flex flex-col gap-0 pl-2 ">
+            <h1 className=" underline underline-offset-2 text-xl font-bold tracking-wider h-8 mb-3">Kommentarer</h1>
+            <EventComment currentEvent={currentEvent} />
+            <div className="tracking-wide flex gap-2 flex-col w-[97%] mt-6 mb-4">
+              {currentEvent.comments?.map((comment) => {
+                return (
+                  <div className=" rounded-lg px-2 py-2 border-[1px] border-black" key={comment.id}>
+                    <p>{comment.post}</p>
+                    <p className=" font-bold text-sm mt-1 text-right pr-2">- {comment.name}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <div className="w-full flex justify-center">
+            <Button
+              onClick={eventComing}
+              className={` p-2 mb-12 w-48 h-16 text-2xl ${
+                eventAttending ? "focus:bg-red-500 bg-red-500 " : "focus:bg-green-500 bg-green-500"
+              }  tracking-widest`}
+            >
+              {eventAttending ? "Oanmäld" : "Anmäld"}
+            </Button>
           </div>
         </CardContent>
       </Card>
