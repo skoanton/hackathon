@@ -32,8 +32,10 @@ const BottomNavbar = () => {
           <li>
             <Link to={"/map"}>
               <Map
-                className={`w-10 h-10 ${
-                  location.pathname === "/map" ? "text-primary" : "text-black"
+                className={` text-black w-10 h-10 ${
+                  location.pathname === "/map"
+                    ? "text-opacity-30"
+                    : "text-opacity-100"
                 }`}
               />
             </Link>

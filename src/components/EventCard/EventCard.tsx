@@ -36,7 +36,7 @@ const EventCard = ({ event }: EventCardProps) => {
               {event.organizer}
             </CardDescription>
             <div className="flex gap-2 items-center">
-              <div className="flex w-2/4">
+              <div className="flex w-2/4 gap-2">
                 <UserCheck className="w-5 h-5" />
                 <p className="font-semibold">{event.attendants} kommer</p>
               </div>
