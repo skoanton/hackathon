@@ -33,7 +33,7 @@ export function EventComment({ currentEvent }: EventCommentProps) {
         onChange={(e) => setComment(e.target.value.toString())}
         placeholder="Comment on this event!!!"
         value={comment}
-        className="w-[98%] bg-slate-400 text-black placeholder:text-white placeholder:opacity-70"
+        className="w-[98%] bg-accent text-black placeholder:text-white placeholder:opacity-70"
       />
       <Button
         className="h-10 w-10 mr-2 absolute -bottom-0 right-2 rounded-full border-[1px] border-black"
