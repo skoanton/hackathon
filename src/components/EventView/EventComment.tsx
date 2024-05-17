@@ -22,6 +22,7 @@ export function EventComment({ currentEvent }: EventCommentProps) {
         comment: comment,
       },
     });
+    setComment("");
   };
 
   return (
@@ -30,6 +31,7 @@ export function EventComment({ currentEvent }: EventCommentProps) {
         onChange={(e) => setComment(e.target.value.toString())}
         placeholder="Comment on this event!!!"
         className="mt-2"
+        value={comment}
       />
       <Button onClick={() => submitComment()}>Post comment</Button>
     </div>
