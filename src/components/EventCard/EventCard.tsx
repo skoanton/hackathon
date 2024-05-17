@@ -1,3 +1,4 @@
+import { UserEventsContext } from "@/Context/UserEventsContext/UserEventsContext";
 import {
   Card,
   CardContent,
@@ -6,12 +7,14 @@ import {
 } from "@/components/ui/card";
 import { Event } from "@/types/eventTypes";
 import { Heart, UserCheck } from "lucide-react";
+import { useContext } from "react";
 
 type EventCardProps = {
   event: Event;
 };
 
 const EventCard = ({ event }: EventCardProps) => {
+  const { userEventsState } = useContext(UserEventsContext);
   return (
     <>
       <Card>
@@ -31,9 +34,17 @@ const EventCard = ({ event }: EventCardProps) => {
             <p className="font-bold">{event.title}</p>
             <CardDescription>{event.organizer}</CardDescription>
             <div className="flex gap-2 items-center">
-              <UserCheck className="w-4 h-4" />
-              <p className="font-semibold">{event.attendants} kommer</p>
-              <Heart className="w-4 h-4" />
+              <div className="flex w-2/4">
+                <UserCheck className="w-5 h-5" />
+                <p className="font-semibold">{event.attendants} kommer</p>
+              </div>
+              <Heart
+                className={`w-5 h-5 ${
+                  userEventsState.favorites.some((ev) => ev.id === event.id)
+                    ? "fill-red-500"
+                    : "bg-transparent"
+                }`}
+              />
             </div>
           </div>
         </CardContent>
