@@ -32,7 +32,7 @@ const EventCard = ({ event }: EventCardProps) => {
             <CardDescription>{event.organizer}</CardDescription>
             <div className="flex gap-2 items-center">
               <UserCheck className="w-4 h-4" />
-              <p className="font-semibold">3338 kommer</p>
+              <p className="font-semibold">{event.attendants} kommer</p>
               <Heart className="w-4 h-4" />
             </div>
           </div>

@@ -6,6 +6,7 @@ export type Event = {
     location: string,
     organizer: string,
     images: string[],
+    attendts: number,
     comments?: EventComments[]
 }
 
