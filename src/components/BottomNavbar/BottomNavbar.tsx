@@ -11,7 +11,7 @@ const BottomNavbar = () => {
             <Link to={"/"}>
               <Home
                 className={` w-10 h-10 ${
-                  location.pathname === "/" ? "text-primary" : "text-black"
+                  location.pathname === "/" ? "text-opacity-50" : "text-black"
                 }`}
               />
             </Link>
