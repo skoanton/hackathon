@@ -12,10 +12,10 @@ const EventCard = ({ event }: EventCardProps) => {
    const { userEventsState } = useContext(UserEventsContext);
    return (
       <>
-         <Card>
+         <Card className="bg-slate-100">
             <CardContent className="flex justify-center items-center gap-5 p-2">
                <picture className="justify-self-center">
-                  <img src={event.images[0]} alt="event picture" className=" w-28 h-28 object-cover" />
+                  <img src={event.images[0]} alt="event picture" className=" w-28 h-28 object-cover rounded-lg" />
                </picture>
 
                <div className="flex-grow">
