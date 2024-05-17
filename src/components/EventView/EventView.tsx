@@ -1,9 +1,8 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { EventComment } from "./EventComment";
 import { Heart } from "lucide-react";
 import { useContext, useState, useEffect } from "react";
 import { EventsContext } from "@/Context/EventsContext/EventsContext";
-import { ComingToEventButton } from "./ComingToEventButton";
 import { UserEventsContext } from "@/Context/UserEventsContext/UserEventsContext";
 import { USER_EVENT_ACTION } from "@/Context/UserEventsContext/UserEventsReducer";
 import { useParams } from "react-router-dom";
@@ -69,7 +68,7 @@ const EventCard = () => {
 
   return (
     currentEvent && (
-      <Card className="bg-[#3C6997] w-screen h-screen">
+      <Card className="bg-primary w-screen h-screen">
         <CardHeader>
           <h1 className="text-white text-4xl font-bold tracking-wider text-center">{currentEvent.title}</h1>
           <h2 className="text-white text-center underline tracking-wider">{currentEvent.date.toDateString()}</h2>
@@ -88,7 +87,7 @@ const EventCard = () => {
           </div>
         </div>
         <CardContent>
-          <div className="bg-[#6C6EA0] h-24 w-full mt-6 rounded-lg grid grid-rows-2 ">
+          <div className="bg-accent h-24 w-full mt-6 rounded-lg grid grid-rows-2 ">
             <div className="flex justify-between px-2 text-white font-thin items-center">
               <p>Organizer: </p>
               <p>{currentEvent.organizer}</p>
@@ -98,11 +97,11 @@ const EventCard = () => {
               <p>{currentEvent.location}</p>
             </div>
           </div>
-          <div className="bg-[#6C6EA0] h-32 w-full mt-6 rounded-lg flex flex-col gap-0 pl-2 ">
+          <div className="bg-accent h-32 w-full mt-6 rounded-lg flex flex-col gap-0 pl-2 ">
             <h1 className="text-white underline underline-offset-2 text-xl font-bold tracking-wider h-8">Om eventet</h1>
             <p className="text-white tracking-wide">{currentEvent.description}</p>
           </div>
-          <div className="bg-[#6C6EA0] h-auto w-full mt-6 rounded-lg flex flex-col gap-0 pl-2 ">
+          <div className="bg-accent h-auto w-full mt-6 rounded-lg flex flex-col gap-0 pl-2 ">
             <h1 className="text-white underline underline-offset-2 text-xl font-bold tracking-wider h-8 mb-3">
               Kommentarer
             </h1>
@@ -111,7 +110,7 @@ const EventCard = () => {
             <div className="text-white tracking-wide flex gap-2 flex-col w-[97%] mt-6 mb-4">
               {currentEvent.comments?.map((comment) => {
                 return (
-                  <div className="bg-[#4E507A] rounded-l pl-2">
+                  <div className="bg-[#4E507A] rounded-l pl-2" key={comment.id}>
                     <p>{comment.post}</p>
                     <p className="underline font-bold text-sm mt-1 text-right pr-2">- {comment.name}</p>
                   </div>

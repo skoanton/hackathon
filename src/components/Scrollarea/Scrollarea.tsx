@@ -13,9 +13,9 @@ type ScrollAreaProps = {
 export function ScrollArea({ currentEventState }: ScrollAreaProps) {
   return (
     <ScrollAreaShad className=" rounded-md ">
-      <ul className="flex flex-col gap-2">
+      <ul className="flex flex-col gap-2 p-2">
         {currentEventState.map((event) => (
-          <li>
+          <li key={event.id}>
             <Link to={`/event/${event.id}`}>
               <EventCard event={event} />
             </Link>
