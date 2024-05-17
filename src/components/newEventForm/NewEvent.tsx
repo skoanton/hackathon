@@ -27,6 +27,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useContext, useState } from "react";
 import { EVENT_ACTION } from "@/Context/EventsContext/EventsReducer";
 import { EventsContext } from "@/Context/EventsContext/EventsContext";
+import { useNavigate } from "react-router-dom";
 
 export const FormSchema = z.object({
   title: z.string().min(5),
@@ -38,6 +39,7 @@ export const FormSchema = z.object({
 });
 
 export function NewEvent() {
+  const navigate = useNavigate();
   const { eventsDispatch } = useContext(EventsContext);
   const [preview, setPreview] = useState("");
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -67,6 +69,7 @@ export function NewEvent() {
     console.log(sumbitData);
     if (sumbitData) {
       eventsDispatch({ type: EVENT_ACTION.ADD, payload: sumbitData });
+      navigate("/");
     }
   };
 
