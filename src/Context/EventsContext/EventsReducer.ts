@@ -21,6 +21,8 @@ export const initialEventsState: EventsState = {
       organizer: "Basketklubben",
       images: ["/image-0.jpg"],
       attendants: Math.floor(Math.random() * 1000) + 1,
+      longitude: 12.9446,
+      latitude: 57.7198,
     },
     {
       id: uuidv4(),
@@ -31,6 +33,8 @@ export const initialEventsState: EventsState = {
       organizer: "Uppsala Basketförening",
       images: ["/image-1.jpg"],
       attendants: Math.floor(Math.random() * 1000) + 1,
+      longitude: 12.949,
+      latitude: 57.7235,
     },
     {
       id: uuidv4(),
@@ -41,6 +45,8 @@ export const initialEventsState: EventsState = {
       organizer: "Göteborg Yoga Club",
       images: ["/image-2.jpg"],
       attendants: Math.floor(Math.random() * 1000) + 1,
+      longitude: 12.9385,
+      latitude: 57.7257,
     },
     {
       id: uuidv4(),
@@ -51,6 +57,8 @@ export const initialEventsState: EventsState = {
       organizer: "Malmö Basket",
       images: ["/image-3.jpg"],
       attendants: Math.floor(Math.random() * 1000) + 1,
+      longitude: 12.9427,
+      latitude: 57.7173,
     },
     {
       id: uuidv4(),
@@ -61,6 +69,8 @@ export const initialEventsState: EventsState = {
       organizer: "Lunds Löpklubb",
       images: ["/image-4.jpg"],
       attendants: Math.floor(Math.random() * 1000) + 1,
+      longitude: 12.9513,
+      latitude: 57.7189,
     },
     {
       id: uuidv4(),
@@ -71,6 +81,8 @@ export const initialEventsState: EventsState = {
       organizer: "Örebro Basket",
       images: ["/image-5.jpg"],
       attendants: Math.floor(Math.random() * 1000) + 1,
+      longitude: 12.9369,
+      latitude: 57.7281,
     },
     {
       id: uuidv4(),
@@ -81,6 +93,8 @@ export const initialEventsState: EventsState = {
       organizer: "Linköpings Basketförening",
       images: ["/image-6.jpg"],
       attendants: Math.floor(Math.random() * 1000) + 1,
+      longitude: 12.9483,
+      latitude: 57.7224,
     },
     {
       id: uuidv4(),
@@ -91,6 +105,8 @@ export const initialEventsState: EventsState = {
       organizer: "Västerås Basketklubb",
       images: ["/image-7.jpg"],
       attendants: Math.floor(Math.random() * 1000) + 1,
+      longitude: 12.9407,
+      latitude: 57.727,
     },
     {
       id: uuidv4(),
@@ -101,6 +117,8 @@ export const initialEventsState: EventsState = {
       organizer: "Helsingborg Basket",
       images: ["/image-8.jpg"],
       attendants: Math.floor(Math.random() * 1000) + 1,
+      longitude: 12.9432,
+      latitude: 57.7215,
     },
     {
       id: uuidv4(),
@@ -111,6 +129,8 @@ export const initialEventsState: EventsState = {
       organizer: "Karlstad Basketförening",
       images: ["/image-9.jpg"],
       attendants: Math.floor(Math.random() * 1000) + 1,
+      longitude: 12.9459,
+      latitude: 57.7192,
     },
   ],
 };
