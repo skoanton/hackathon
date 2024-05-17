@@ -15,13 +15,13 @@ const EventCard = ({ event }: EventCardProps) => {
          <Card>
             <CardContent className="flex justify-center items-center gap-5 p-2">
                <picture className="justify-self-center">
-                  <img src="/test-picture.jpg" alt="event picture" className=" w-28 h-28 object-cover" />
+                  <img src={event.images[0]} alt="event picture" className=" w-28 h-28 object-cover" />
                </picture>
 
                <div className="flex-grow">
                   <CardTitle className="text-lg">{event.date.toDateString()}</CardTitle>
-                  <p className="font-bold">{event.title}</p>
-                  <CardDescription>{event.organizer}</CardDescription>
+                  <p className="font-bold text-l">{event.title}</p>
+                  <CardDescription className="text-black">{event.organizer}</CardDescription>
                   <div className="flex gap-2 items-center">
                      <div className="flex w-2/4">
                         <UserCheck className="w-5 h-5" />
