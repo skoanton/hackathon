@@ -5,7 +5,7 @@ const BottomNavbar = () => {
    const location = useLocation();
    return (
       <footer className=" h-16 w-full fixed bottom-0 ">
-         <div className=" h-full w-full bg-slate-400 px-4 rounded-lg">
+         <div className=" h-full w-full bg-slate-200 px-4 rounded-lg">
             <ul className="w-full h-full items-center flex justify-between">
                <li>
                   <Link to={'/'}>
