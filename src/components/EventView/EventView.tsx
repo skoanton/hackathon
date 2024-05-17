@@ -16,7 +16,9 @@ const EventCard = () => {
 
   const params = useParams<{ id: string }>();
 
-  const currentEvent: Event | undefined = eventsState.event.find((event) => event.id === params.id);
+  const currentEvent: Event | undefined = eventsState.event.find(
+    (event) => event.id === params.id
+  );
 
   const eventReaction = () => {
     if (currentEvent) {
@@ -60,7 +62,9 @@ const EventCard = () => {
     : false;
 
   const [eventLiked, setEventLiked] = useState<boolean>(currentEventLiked);
-  const [eventAttending, setEventAttending] = useState<boolean>(currentEventAttending);
+  const [eventAttending, setEventAttending] = useState<boolean>(
+    currentEventAttending
+  );
 
   useEffect(() => {
     setEventLiked(currentEventLiked);
@@ -71,8 +75,12 @@ const EventCard = () => {
     currentEvent && (
       <Card className=" w-screen h-screen border-none shadow-none">
         <CardHeader>
-          <h1 className="text-4xl font-bold tracking-wider text-center">{currentEvent.title}</h1>
-          <h2 className="text-center underline tracking-wider">{currentEvent.date.toDateString()}</h2>
+          <h1 className="text-4xl font-bold tracking-wider text-center">
+            {currentEvent.title}
+          </h1>
+          <h2 className="text-center underline tracking-wider">
+            {currentEvent.date.toDateString()}
+          </h2>
         </CardHeader>
         <div className=" relative mx-8 bg-red-200 rounded-lg">
           <img src={`${currentEvent.images}`} alt="" className=" object-fit" />
@@ -100,20 +108,29 @@ const EventCard = () => {
           </div>
           <hr className="bg-black" />
           <div className="h-32 w-full mt-6 rounded-lg flex flex-col gap-0 pl-2 ">
-            <h1 className="underline underline-offset-2 text-xl font-bold tracking-wider h-8">Om eventet</h1>
+            <h1 className="underline underline-offset-2 text-xl font-bold tracking-wider h-8">
+              Om eventet
+            </h1>
             <p className="tracking-wide">{currentEvent.description}</p>
           </div>
           <hr className="bg-black" />
 
           <div className="h-auto w-full mt-6 rounded-lg flex flex-col gap-0 pl-2 ">
-            <h1 className=" underline underline-offset-2 text-xl font-bold tracking-wider h-8 mb-3">Kommentarer</h1>
+            <h1 className=" underline underline-offset-2 text-xl font-bold tracking-wider h-8 mb-3">
+              Kommentarer
+            </h1>
             <EventComment currentEvent={currentEvent} />
             <div className="tracking-wide flex gap-2 flex-col w-[97%] mt-6 mb-4">
               {currentEvent.comments?.map((comment) => {
                 return (
-                  <div className=" rounded-lg px-2 py-2 border-[1px] border-black" key={comment.id}>
+                  <div
+                    className=" rounded-lg px-2 py-2 border-[1px] border-black"
+                    key={comment.id}
+                  >
                     <p>{comment.post}</p>
-                    <p className=" font-bold text-sm mt-1 text-right pr-2">- {comment.name}</p>
+                    <p className=" font-bold text-sm mt-1 text-right pr-2">
+                      - {comment.name}
+                    </p>
                   </div>
                 );
               })}
@@ -123,10 +140,12 @@ const EventCard = () => {
             <Button
               onClick={eventComing}
               className={` p-2 mb-12 w-48 h-16 text-2xl ${
-                eventAttending ? "focus:bg-red-500 bg-red-500 " : "focus:bg-green-500 bg-green-500"
+                !eventAttending
+                  ? "focus:bg-red-500 bg-red-500 "
+                  : "focus:bg-green-500 bg-green-500"
               }  tracking-widest`}
             >
-              {eventAttending ? "Oanmäld" : "Anmäld"}
+              {eventAttending ? "Anmäld" : "Oanmäld"}
             </Button>
           </div>
         </CardContent>

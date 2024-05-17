@@ -1,4 +1,4 @@
-import { Heart, Home, Plus, User } from "lucide-react";
+import { Heart, Map, Home, Plus, User } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 const BottomNavbar = () => {
@@ -23,6 +23,15 @@ const BottomNavbar = () => {
                   location.pathname === "/newevent"
                     ? "text-primary"
                     : "text-black"
+                }`}
+              />
+            </Link>
+          </li>
+          <li>
+            <Link to={"/map"}>
+              <Map
+                className={`w-10 h-10 ${
+                  location.pathname === "/map" ? "text-primary" : "text-black"
                 }`}
               />
             </Link>
