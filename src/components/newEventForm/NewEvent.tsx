@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { v4 as uuidv4 } from 'uuid';
 import { format } from 'date-fns';
 import { CalendarIcon } from 'lucide-react';
 import { useForm } from 'react-hook-form';
@@ -21,12 +22,9 @@ export const FormSchema = z.object({
    date: z.coerce.date(),
    location: z.string().min(1),
    organizer: z.string(),
-   image: z
-      .any()
-      .refine((file) => file?.length == 1, 'Photo is required.')
-      .refine((file) => file[0]?.size <= 3000000),
+   image: z.optional(),
 });
-export type formType = z.infer<typeof FormSchema>;
+/* export type formType = z.infer<typeof FormSchema>;
 function getImageData(event: ChangeEvent<HTMLInputElement>) {
    const dataTransfer = new DataTransfer();
    Array.from(event.target.files!).forEach((image) => dataTransfer.items.add(image));
@@ -35,6 +33,15 @@ function getImageData(event: ChangeEvent<HTMLInputElement>) {
    const displayUrl = URL.createObjectURL(event.target.files![0]);
 
    return { files, displayUrl };
+} */
+function getImageData(event: ChangeEvent<HTMLInputElement>) {
+   const file = event.target.files?.[0];
+   if (!file) {
+      return { displayUrl: '' };
+   }
+
+   const displayUrl = URL.createObjectURL(file);
+   return { displayUrl };
 }
 export function NewEvent() {
    const { eventsDispatch } = useContext(EventsContext);
@@ -49,15 +56,16 @@ export function NewEvent() {
       },
    });
 
-   /*   function handleChange(e) {
+   function handleChange(e) {
       console.log(e.target.files);
       setPreview(URL.createObjectURL(e.target.files[0]));
-   } */
+   }
 
    const onSubmit = (data: z.infer<typeof FormSchema>) => {
-      console.log(data);
-      if (data) {
-         eventsDispatch({ type: EVENT_ACTION.ADD, payload: data });
+      const sumbitData = { ...data, images: [preview], id: uuidv4() };
+      console.log(sumbitData);
+      if (sumbitData) {
+         eventsDispatch({ type: EVENT_ACTION.ADD, payload: sumbitData });
       }
    };
 
@@ -65,7 +73,7 @@ export function NewEvent() {
       <section className=" bg-zinc-300 p-4 w-full h-full flex flex-col items-center">
          <h1 className=" text-4xl font-bold  text-center ">Create Event</h1>
          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full overflow-scroll mx-3 ">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full overflow-scroll px-4  ">
                <FormField
                   name="title"
                   control={form.control}
@@ -157,15 +165,7 @@ export function NewEvent() {
                         <FormLabel>Event Photo</FormLabel>
                         <FormMessage />
                         <FormControl>
-                           <Input
-                              type="file"
-                              {...field}
-                              onChange={(event) => {
-                                 const { files, displayUrl } = getImageData(event);
-                                 setPreview(displayUrl);
-                                 field.onChange(files);
-                              }}
-                           />
+                           <Input type="file" {...field} onChange={handleChange} />
                         </FormControl>
                      </FormItem>
                   )}
