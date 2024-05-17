@@ -51,7 +51,6 @@ export function NewEvent() {
   });
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    console.log(e.target.files);
     if (e.target.files) {
       setPreview(URL.createObjectURL(e.target.files[0]));
     }
@@ -77,7 +76,7 @@ export function NewEvent() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 w-full overflow-scroll px-4"
+          className="space-y-8 w-full overflow-scroll px-4  "
         >
           <FormField
             name="title"
