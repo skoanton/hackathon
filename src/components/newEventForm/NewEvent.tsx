@@ -71,19 +71,19 @@ export function NewEvent() {
   };
 
   return (
-    <section className=" bg-zinc-300 p-4 w-full h-full flex flex-col items-center">
-      <h1 className=" text-4xl font-bold  text-center ">Create Event</h1>
+    <section className="p-4 w-full h-full flex flex-col items-center">
+      <h1 className=" text-4xl font-bold  text-center ">Skapa ett event</h1>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 w-full overflow-scroll px-4  "
+          className="space-y-4 w-full overflow-scroll px-4  "
         >
           <FormField
             name="title"
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Title</FormLabel>
+                <FormLabel>Titel</FormLabel>
                 <FormMessage />
                 <FormControl>
                   <Input
@@ -92,9 +92,6 @@ export function NewEvent() {
                     autoComplete="off"
                   />
                 </FormControl>
-                <FormDescription className="text-gray-600">
-                  Event title
-                </FormDescription>
               </FormItem>
             )}
           />
@@ -103,7 +100,7 @@ export function NewEvent() {
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Organizer</FormLabel>
+                <FormLabel>Arangör</FormLabel>
                 <FormMessage />
                 <FormControl>
                   <Input
@@ -120,10 +117,10 @@ export function NewEvent() {
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Description of event</FormLabel>
+                <FormLabel>Beskrivning av event</FormLabel>
                 <FormMessage />
                 <FormControl>
-                  <Textarea {...field} />
+                  <Textarea {...field} placeholder="Beskriv eventet" />
                 </FormControl>
               </FormItem>
             )}
@@ -133,7 +130,7 @@ export function NewEvent() {
             name="date"
             render={({ field }) => (
               <FormItem className="flex flex-col items-start">
-                <FormLabel>Date of Event</FormLabel>
+                <FormLabel>Datum</FormLabel>
                 <Popover>
                   <PopoverTrigger asChild>
                     <FormControl>
@@ -147,7 +144,7 @@ export function NewEvent() {
                         {field.value ? (
                           format(field.value, "PPP")
                         ) : (
-                          <span>Pick a date</span>
+                          <span>Välj ett datum</span>
                         )}
                         <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                       </Button>
@@ -175,7 +172,7 @@ export function NewEvent() {
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Event place</FormLabel>
+                <FormLabel>Plats</FormLabel>
                 <FormMessage />
                 <FormControl>
                   <Input
@@ -198,7 +195,7 @@ export function NewEvent() {
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Event Photo</FormLabel>
+                <FormLabel>Bild</FormLabel>
                 <FormMessage />
                 <FormControl>
                   <Input type="file" {...field} onChange={handleChange} />
@@ -209,7 +206,7 @@ export function NewEvent() {
 
           <div className="w-full flex justify-center">
             <Button className="w-full" type="submit">
-              Submit
+              Skapa
             </Button>
           </div>
         </form>
