@@ -10,8 +10,10 @@ const BottomNavbar = () => {
           <li>
             <Link to={"/"}>
               <Home
-                className={` w-10 h-10 ${
-                  location.pathname === "/" ? "text-opacity-50" : "text-black"
+                className={` text-black w-10 h-10 ${
+                  location.pathname === "/"
+                    ? "text-opacity-30"
+                    : "text-opacity-100"
                 }`}
               />
             </Link>
@@ -19,10 +21,10 @@ const BottomNavbar = () => {
           <li>
             <Link to={"/newevent"}>
               <Plus
-                className={`w-10 h-10 ${
+                className={` text-black w-10 h-10 ${
                   location.pathname === "/newevent"
-                    ? "text-primary"
-                    : "text-black"
+                    ? "text-opacity-30"
+                    : "text-opacity-100"
                 }`}
               />
             </Link>
@@ -30,10 +32,10 @@ const BottomNavbar = () => {
           <li>
             <Link to={"/event/saved"}>
               <Heart
-                className={`w-10 h-10 ${
+                className={` text-black w-10 h-10 ${
                   location.pathname === "/event/saved"
-                    ? "text-primary"
-                    : "text-black"
+                    ? "text-opacity-30"
+                    : "text-opacity-100"
                 }`}
               />
             </Link>
@@ -41,10 +43,10 @@ const BottomNavbar = () => {
           <li>
             <Link to={"/profile/1"}>
               <User
-                className={`w-10 h-10 ${
+                className={` text-black w-10 h-10 ${
                   location.pathname.startsWith("/profile")
-                    ? "text-primary"
-                    : "text-black"
+                    ? "text-opacity-30"
+                    : "text-opacity-100"
                 }`}
               />
             </Link>
