@@ -9,6 +9,7 @@ import SavedEventPage from "./pages/SavedEvents/SavedEventPage.tsx";
 import EventView from "./components/EventView/EventView.tsx";
 import UserEventsProvider from "./Context/UserEventsContext/UserEventsProvider.tsx";
 import EventsProvider from "./Context/EventsContext/EventsProvider.tsx";
+import { GlobalProvider } from "./Context/GlobalProvider.tsx";
 
 const router = createBrowserRouter([
   {
@@ -40,10 +41,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <EventsProvider>
-      <UserEventsProvider>
-        <RouterProvider router={router} />
-      </UserEventsProvider>
-    </EventsProvider>
+    <GlobalProvider>
+      <RouterProvider router={router} />
+    </GlobalProvider>
   </React.StrictMode>
 );

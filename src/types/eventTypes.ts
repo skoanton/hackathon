@@ -10,6 +10,7 @@ export type Event = {
 }
 
 export type EventComments = {
+    id: string,
     name: string,
     post: string,
 }

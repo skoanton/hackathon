@@ -3,7 +3,7 @@ import { EventsActions } from "./EventsContext";
 import { v4 as uuidv4 } from 'uuid';
 export enum EVENT_ACTION {
     ADD ="ADD",
-    REMOVE ="REMOVE"
+    ADD_COMMENT = "ADD_COMMENT"
 }
 
 export type EventsState = {
@@ -108,7 +108,28 @@ export const initialEventsState: EventsState = {
 export const eventsReducer = (eventsState: EventsState, action:EventsActions  ): EventsState => {
     switch (action.type) {
         case EVENT_ACTION.ADD:
+            if (eventsState.event.every((ev) => ev.id !== action.payload.id)) {
+                return {
+                  ...eventsState,
+                  event: [...eventsState.event, action.payload],
+                };
+              } else {
                 return eventsState;
+              }
+        case EVENT_ACTION.ADD_COMMENT:{
+            const updatedEvents = eventsState.event.map((event) => {
+                if(event.id === action.payload.event.id){const updatedComments = event.comments ? [...event.comments, { id: uuidv4(),name: "Sture", post: action.payload.comment }] : [{ id: uuidv4(),name:"Sture", post: action.payload.comment }];
+                    return {
+                        ...event,
+                        comments: updatedComments
+                    }
+                };
+                return event
+            })
+            return {...eventsState, event: updatedEvents}
+        }
+
+        
         default:
             return eventsState;
             
