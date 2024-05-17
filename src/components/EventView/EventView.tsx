@@ -69,7 +69,7 @@ const EventCard = () => {
 
   return (
     currentEvent && (
-      <Card className=" w-screen h-screen">
+      <Card className=" w-screen h-screen border-none shadow-none">
         <CardHeader>
           <h1 className="text-4xl font-bold tracking-wider text-center">{currentEvent.title}</h1>
           <h2 className="text-center underline tracking-wider">{currentEvent.date.toDateString()}</h2>
@@ -98,20 +98,22 @@ const EventCard = () => {
               <p>{currentEvent.location}</p>
             </div>
           </div>
+          <hr className="bg-black" />
           <div className="h-32 w-full mt-6 rounded-lg flex flex-col gap-0 pl-2 ">
             <h1 className="underline underline-offset-2 text-xl font-bold tracking-wider h-8">Om eventet</h1>
             <p className="tracking-wide">{currentEvent.description}</p>
           </div>
+          <hr className="bg-black" />
+
           <div className="h-auto w-full mt-6 rounded-lg flex flex-col gap-0 pl-2 ">
             <h1 className=" underline underline-offset-2 text-xl font-bold tracking-wider h-8 mb-3">Kommentarer</h1>
             <EventComment currentEvent={currentEvent} />
-
             <div className="tracking-wide flex gap-2 flex-col w-[97%] mt-6 mb-4">
               {currentEvent.comments?.map((comment) => {
                 return (
-                  <div className=" rounded-l pl-2" key={comment.id}>
+                  <div className=" rounded-lg px-2 py-2 border-[1px] border-black" key={comment.id}>
                     <p>{comment.post}</p>
-                    <p className="underline font-bold text-sm mt-1 text-right pr-2">- {comment.name}</p>
+                    <p className=" font-bold text-sm mt-1 text-right pr-2">- {comment.name}</p>
                   </div>
                 );
               })}
