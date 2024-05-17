@@ -20,8 +20,8 @@ const EventCard = ({ event }: EventCardProps) => {
 
                <div className="flex-grow">
                   <CardTitle className="text-lg">{event.date.toDateString()}</CardTitle>
-                  <p className="font-bold">{event.title}</p>
-                  <CardDescription>{event.organizer}</CardDescription>
+                  <p className="font-bold text-l">{event.title}</p>
+                  <CardDescription className="text-black">{event.organizer}</CardDescription>
                   <div className="flex gap-2 items-center">
                      <div className="flex w-2/4">
                         <UserCheck className="w-5 h-5" />
