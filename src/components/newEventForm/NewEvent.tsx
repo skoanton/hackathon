@@ -24,7 +24,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { ChangeEvent, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { EVENT_ACTION } from "@/Context/EventsContext/EventsReducer";
 import { EventsContext } from "@/Context/EventsContext/EventsContext";
 
@@ -36,25 +36,7 @@ export const FormSchema = z.object({
   organizer: z.string(),
   image: z.optional(),
 });
-/* export type formType = z.infer<typeof FormSchema>;
-function getImageData(event: ChangeEvent<HTMLInputElement>) {
-   const dataTransfer = new DataTransfer();
-   Array.from(event.target.files!).forEach((image) => dataTransfer.items.add(image));
 
-   const files = dataTransfer.files;
-   const displayUrl = URL.createObjectURL(event.target.files![0]);
-
-   return { files, displayUrl };
-} */
-function getImageData(event: ChangeEvent<HTMLInputElement>) {
-  const file = event.target.files?.[0];
-  if (!file) {
-    return { displayUrl: "" };
-  }
-
-  const displayUrl = URL.createObjectURL(file);
-  return { displayUrl };
-}
 export function NewEvent() {
   const { eventsDispatch } = useContext(EventsContext);
   const [preview, setPreview] = useState("");
@@ -68,9 +50,10 @@ export function NewEvent() {
     },
   });
 
-  function handleChange(e) {
-    console.log(e.target.files);
-    setPreview(URL.createObjectURL(e.target.files[0]));
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    if (e.target.files) {
+      setPreview(URL.createObjectURL(e.target.files[0]));
+    }
   }
 
   const onSubmit = (data: z.infer<typeof FormSchema>) => {
