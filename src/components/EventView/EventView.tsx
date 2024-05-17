@@ -21,9 +21,15 @@ const EventCard = () => {
   const eventReaction = () => {
     if (currentEvent) {
       if (eventLiked) {
-        userEventsDispatch({ type: USER_EVENT_ACTION.REMOVE_FAVORITE, payload: currentEvent });
+        userEventsDispatch({
+          type: USER_EVENT_ACTION.REMOVE_FAVORITE,
+          payload: currentEvent,
+        });
       } else {
-        userEventsDispatch({ type: USER_EVENT_ACTION.ADD_FAVORITE, payload: currentEvent });
+        userEventsDispatch({
+          type: USER_EVENT_ACTION.ADD_FAVORITE,
+          payload: currentEvent,
+        });
       }
       setEventLiked(!eventLiked);
     }
@@ -32,9 +38,15 @@ const EventCard = () => {
   const eventComing = () => {
     if (currentEvent) {
       if (eventAttending) {
-        userEventsDispatch({ type: USER_EVENT_ACTION.REMOVE_ATTENDING, payload: currentEvent });
+        userEventsDispatch({
+          type: USER_EVENT_ACTION.REMOVE_ATTENDING,
+          payload: currentEvent,
+        });
       } else {
-        userEventsDispatch({ type: USER_EVENT_ACTION.ADD_ATTENDING, payload: currentEvent });
+        userEventsDispatch({
+          type: USER_EVENT_ACTION.ADD_ATTENDING,
+          payload: currentEvent,
+        });
       }
       setEventAttending(!eventAttending);
     }
@@ -153,7 +165,6 @@ const EventCard = () => {
           <div className="bg-[#6C6EA0] h-32 w-full mt-6 rounded-lg flex flex-col gap-0 pl-2 ">
             <h1 className="text-[#C1CAD6] underline text-xl font-bold tracking-wider h-8">Kommentarer</h1>
             <div className="text-[#C1CAD6] tracking-wide">
-              <EventComment />
               {currentEvent.comments?.map((comment) => {
                 return <>{comment.post}</>;
               })}
