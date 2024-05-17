@@ -9,7 +9,7 @@ const SavedEventPage = ({}: SavedEventPageProps) => {
 
   return (
     <>
-      <h2 className="text-xl font-bold text-center">Upcoming event for you</h2>
+      <h2 className="text-xl font-bold text-center">Sparade events</h2>
       <div
         className={`p-2 ${
           userEventsState.favorites.length < 1 ? "bg-primary" : "bg-transparent"
@@ -23,7 +23,7 @@ const SavedEventPage = ({}: SavedEventPageProps) => {
           </p>
         )}
       </div>
-      <h2 className="text-xl font-bold text-center">Upcoming event for you</h2>
+      <h2 className="text-xl font-bold text-center">Kommande event</h2>
       <div
         className={`p-2 ${
           userEventsState.attending.length < 1 ? "bg-primary" : "bg-transparent"
