@@ -25,7 +25,7 @@ export const CustomMarker = ({ event }: any) => {
       >
         {modalOpen && (
           <div className="w-64 h-44 bg-black opacity-80 p-2 -z-50">
-            <header className="flex justify-between items-center text-white">
+            <header className="flex justify-between items-center text-white ">
               <div>
                 <h1 className="w-full h-6 text-lg">{event.title}</h1>
                 <h2 className="2-full h-4 text-xs font-extralight">{event.date.toDateString()}</h2>
